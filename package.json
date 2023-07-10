@@ -1,17 +1,18 @@
 {
-  "name": "electron-vue-vite",
-  "version": "2.0.0",
+  "name": "evilview",
+  "version": "0.0.1",
   "main": "dist-electron/main/index.js",
-  "description": "Really simple Electron + Vue + Vite boilerplate.",
-  "author": "草鞋没号 <308487730@qq.com>",
+  "description": "A simple photo reader",
+  "author": "1010014622@qq.com",
   "license": "MIT",
   "private": true,
+  "repository": {
+    "url": "https://github.com/AutismPatient/evilview.git",
+    "type": "private"
+  },
   "keywords": [
-    "electron",
-    "rollup",
-    "vite",
-    "vue3",
-    "vue"
+    "view",
+    "photo"
   ],
   "debug": {
     "env": {
