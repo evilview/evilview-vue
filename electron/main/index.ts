@@ -54,14 +54,6 @@ async function createWindow() {
     },
   })
 
-  if (process.env.VITE_DEV_SERVER_URL) { // electron-vite-vue#298
-    win.loadURL(url)
-    // Open devTool if the app is not packaged
-    win.webContents.openDevTools()
-  } else {
-    win.loadFile(indexHtml)
-  }
-
   // Test actively push message to the Electron-Renderer
   win.webContents.on('did-finish-load', () => {
     win?.webContents.send('main-process-message', new Date().toLocaleString())
@@ -75,7 +67,22 @@ async function createWindow() {
   // win.webContents.on('will-navigate', (event, url) => { }) #344
 }
 
-app.whenReady().then(createWindow)
+app.whenReady().then(async () => {
+  try {
+    
+    await createWindow()
+
+    if (process.env.VITE_DEV_SERVER_URL) { // electron-vite-vue#298
+      win.loadURL(url)
+      // Open devTool if the app is not packaged
+      win.webContents.openDevTools()
+    } else {
+      win.loadFile(indexHtml)
+    }
+  } catch (err) {
+    console.error(err)
+  }
+})
 
 app.on('window-all-closed', () => {
   win = null

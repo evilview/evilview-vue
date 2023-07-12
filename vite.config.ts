@@ -80,7 +80,7 @@ export default defineConfig(({ command }) => {
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: '@import "@/assets/css/config.scss"'
+          additionalData: '@import "@/assets/css/config.scss";'
         }
       }
     }
