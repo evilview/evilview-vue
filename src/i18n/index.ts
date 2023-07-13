@@ -4,10 +4,12 @@
 import { createI18n } from "vue-i18n";
 import zh from './langs/zh'
 import en from './langs/en'
+import { getLocale } from "../utils/storage";
 
 const i18n = createI18n({
-    locale: 'zh',
-    
+    locale: getLocale(),
+    fallbackLocale: 'en',
+    allowComposition: true,
     messages: {
         zh: {...zh},
         en: {...en}

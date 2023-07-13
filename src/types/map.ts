@@ -1,0 +1,1 @@
+type Langs = 'zh' | 'en'
