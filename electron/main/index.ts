@@ -58,27 +58,31 @@ async function createWindow() {
     win?.webContents.send('main-process-message', new Date().toLocaleString())
   })
 
-  
-
   // Make all links open with the browser, not with the application
   win.webContents.setWindowOpenHandler(({ url }) => {
     if (url.startsWith('https:')) shell.openExternal(url)
     return { action: 'deny' }
   })
   // win.webContents.on('will-navigate', (event, url) => { }) #344
+
+}
+
+// Define ipc handles
+function ipcHandles() {
+  ipcMain.handle('say', () => 'hello world')
 }
 
 app.whenReady().then(async () => {
   try {
-
+    ipcHandles()
     await createWindow()
 
     if (process.env.VITE_DEV_SERVER_URL) { // electron-vite-vue#298
-      win.loadURL(url)
+      await win.loadURL(url)
       // Open devTool if the app is not packaged
       win.webContents.openDevTools()
     } else {
-      win.loadFile(indexHtml)
+      await win.loadFile(indexHtml)
     }
   } catch (err) {
     console.error(err)
@@ -98,23 +102,23 @@ app.on('second-instance', () => {
   }
 })
 
-app.on('activate', () => {
+app.on('activate', async () => {
   const allWindows = BrowserWindow.getAllWindows()
   if (allWindows.length) {
     allWindows[0].focus()
   } else {
-    createWindow()
+    await createWindow()
   }
 })
 
 // New window example arg: new windows url
-ipcMain.handle('open-win', (_, arg) => {
+ipcMain.handle('open-win', async (_, arg) => {
   const childWindow = new BrowserWindow({
     webPreferences: webPreferences
   })
   if (process.env.VITE_DEV_SERVER_URL) {
-    childWindow.loadURL(`${url}#${arg}`)
+    await childWindow.loadURL(`${url}#${arg}`)
   } else {
-    childWindow.loadFile(indexHtml, { hash: arg })
+    await childWindow.loadFile(indexHtml, { hash: arg })
   }
 })
