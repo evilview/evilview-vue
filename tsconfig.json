@@ -15,6 +15,9 @@
     "types": [
       "pinia-plugin-persist"
     ],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
   "include": ["src"],
   "references": [

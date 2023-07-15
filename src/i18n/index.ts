@@ -11,8 +11,12 @@ const i18n = createI18n({
     fallbackLocale: 'en',
     allowComposition: true,
     messages: {
-        zh: {...zh},
-        en: {...en}
+        zh: {
+            message: {...zh}
+        },
+        en: {
+            message: {...en}
+        }
     }
 })
 
