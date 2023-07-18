@@ -43,12 +43,13 @@ const indexHtml = join(process.env.DIST, 'index.html')
 const webPreferences = {
   preload,
   nodeIntegration: true,
-  contextIsolation: false,
+  contextIsolation: true,
 }
 
 async function createWindow() {
   win = new BrowserWindow({
     title: 'Main window',
+    autoHideMenuBar: true,
     icon: join(process.env.PUBLIC, 'favicon.ico'),
     webPreferences: webPreferences
   })

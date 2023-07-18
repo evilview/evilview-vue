@@ -2,13 +2,10 @@
 </script>
 
 <template>
-  <div class="evilview-app">
+  <div class="evil-view-app">
     <RouterView></RouterView>
   </div>
 </template>
 
 <style lang="scss">
-.evilview-app {
-  display: block;
-}
 </style>

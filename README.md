@@ -37,3 +37,9 @@ yarn build
 - [Vuejs](https://vuejs.org/)
 - [Vite](https://vitejs.dev/)
 - [Sqlite](https://sqlite.org/index.html)
+
+## License
+
+Copyright (c) 2023 evilview
+
+[MIT License](http://en.wikipedia.org/wiki/MIT_License)

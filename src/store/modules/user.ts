@@ -3,7 +3,8 @@ import {defineStore} from 'pinia'
 export const userStore = defineStore('userStore',{
     state: () => {
         return {
-            user_id: ''
+            user_id: '',
+            user_name: ''
         }
     },
     actions: {

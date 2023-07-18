@@ -22,3 +22,4 @@ contextBridge.exposeInMainWorld('electronAPI',{
   getUserName: () => os.userInfo().username,
   say: () => ipcRenderer.invoke('say')
 })
+
