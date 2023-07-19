@@ -21,8 +21,25 @@ yarn dev
 ```
 
 ### build
-```
+Distribute using electron-builder
+```shell
 yarn build
+```
+Installing modules and rebuilding for Electron
+```shell
+yarn rebuild # electron-rebuild -f -w better-sqlite3 ...
+```
+
+### builder config
+Using additional packaging tool [electron-builder](https://www.electron.build/).
+```
+# ./package.json
+
+"build": {
+  "appId": "com.example.app",
+  ....
+}
+
 ```
 
 ## Features

@@ -1,4 +1,4 @@
-import { app, BrowserWindow, shell, ipcMain } from 'electron'
+import { app, BrowserWindow, shell, ipcMain,dialog } from 'electron'
 import { release } from 'node:os'
 import { join } from 'node:path'
 
@@ -71,6 +71,7 @@ async function createWindow() {
 // Define ipc handles
 function ipcHandles() {
   ipcMain.handle('say', () => 'hello world')
+  ipcMain.handle('dialog:openFile', handleFileOpen)
 }
 
 app.whenReady().then(async () => {
@@ -123,3 +124,11 @@ ipcMain.handle('open-win', async (_, arg) => {
     await childWindow.loadFile(indexHtml, { hash: arg })
   }
 })
+
+// handleFileOpen file[0]
+async function handleFileOpen () {
+  const { canceled, filePaths } = await dialog.showOpenDialog(win,{})
+  if (!canceled) {
+    return filePaths[0]
+  }
+}
