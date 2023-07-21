@@ -25,6 +25,22 @@ contextBridge.exposeInMainWorld('electronAPI',{
 })
 
 function initSqlite() {
-  const db = new Database('app_config.db', {});
-  db.pragma('journal_mode = WAL');
+  return new Promise((resolve,reject) => {
+    try {
+      const db = new Database('evilview.db', {
+        verbose: console.log,
+        timeout: 20000
+      })
+      db.pragma('journal_mode = WAL')
+
+      
+
+    } catch(err: any) {
+      reject(err)
+    }
+  })
 }
+
+domReady().then(async() => {
+  initSqlite()
+})

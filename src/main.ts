@@ -18,7 +18,7 @@ import 'quasar/dist/quasar.css'
 import Vuesax from 'vuesax-alpha'
 import 'vuesax-alpha/theme-chalk/index.css'
 // dark mode
-import 'vuesax-alpha/theme-chalk/dark/css-vars.css'
+// import 'vuesax-alpha/theme-chalk/dark/css-vars.css'
 
 const pinia = createPinia()
 pinia.use(piniaPersist)
