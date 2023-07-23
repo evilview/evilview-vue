@@ -2,6 +2,7 @@ import {ipcRenderer} from "electron";
 import Database from 'better-sqlite3';
 const {contextBridge} = require('electron')
 const os = require('node:os')
+import {createAppData} from '@/utils/app'
 
 function domReady(condition: DocumentReadyState[] = ['complete', 'interactive']) {
   return new Promise((resolve) => {

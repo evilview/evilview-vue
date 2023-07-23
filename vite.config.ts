@@ -47,6 +47,14 @@ export default defineConfig(({ command }) => {
             options.reload()
           },
           vite: {
+            resolve: {
+              alias: [
+                {
+                  find: '@',
+                  replacement: resolve(__dirname,'./src')
+                }
+              ]
+            },
             build: {
               sourcemap: sourcemap ? 'inline' : undefined, // #332
               minify: isBuild,
@@ -56,7 +64,7 @@ export default defineConfig(({ command }) => {
               },
             },
           },
-        }
+        },
       ]),
       // Use Node.js API in the Renderer-process
       renderer(),

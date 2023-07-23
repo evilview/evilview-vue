@@ -12,7 +12,9 @@ import {onMounted, ref} from "vue";
 
 const {i18n: {t}} = useLocale()
 
-const ipc = window.electronAPI
+const win: any = window
+
+const ipc = win.electronAPI
 let sayMsg = ref()
 const msg = async () => {
   try {
