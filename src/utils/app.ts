@@ -14,13 +14,19 @@ export function createAppData(info: DataBaseInfo) : {creates: string, inserts: s
         })
     }
 
-    const createTableStr: string = `CREATE TABLE IF EXISTS \`${info.tableName}\` (
+    const createTableStr: string = `CREATE TABLE IF NOT EXISTS \`${info.tableName}\` (
             ${fields.join()}
         )`
 
     if (info.data.length > 0) {
         info.data.forEach((x:any) => {
-            result.push(`INSERT INTO ${info.tableName} (${info.fields.map(x => x.name).join()}) VALUES (${x.join()})`)
+            const values = x.map((y:any) => {
+                if (typeof y === 'string') {
+                    return `'${y}'`
+                }
+                return y
+            })
+            result.push(`INSERT INTO ${info.tableName} (${info.fields.map(x => x.name).join()}) VALUES (${values.join()})`)
         })
     }
 
@@ -28,4 +34,8 @@ export function createAppData(info: DataBaseInfo) : {creates: string, inserts: s
         creates: createTableStr,
         inserts: result
     }
+}
+
+export function getExistTable(table: string) {
+    return `SELECT name FROM sqlite_master WHERE type='table' AND name='${table}'`
 }
