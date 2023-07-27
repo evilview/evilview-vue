@@ -3,6 +3,7 @@
     {{ t('Hello', ['zhudac']) }}
     <br>
     {{ sayMsg }}
+    <box-icon name="rocket"></box-icon>
   </div>
 </template>
 

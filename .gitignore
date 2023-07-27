@@ -24,6 +24,9 @@ release
 *.sln
 *.sw?
 
+# Other
+*.db
+
 # lockfile
 package-lock.json
 pnpm-lock.yaml

@@ -5,6 +5,7 @@ import i18n from './i18n'
 import { createPinia } from "pinia";
 import piniaPersist from 'pinia-plugin-persist';
 import router from './router';
+import 'boxicons'
 
 // import ui library
 
@@ -18,7 +19,7 @@ import 'quasar/dist/quasar.css'
 import Vuesax from 'vuesax-alpha'
 import 'vuesax-alpha/theme-chalk/index.css'
 // dark mode
-// import 'vuesax-alpha/theme-chalk/dark/css-vars.css'
+import 'vuesax-alpha/theme-chalk/dark/css-vars.css'
 
 const pinia = createPinia()
 pinia.use(piniaPersist)
