@@ -1,9 +1,6 @@
 <template>
-  <div>
-    {{ t('Hello', ['zhudac']) }}
-    <br>
-    {{ sayMsg }}
-    <box-icon name="rocket"></box-icon>
+  <div class="viewer-main">
+
   </div>
 </template>
 
@@ -30,3 +27,5 @@ onMounted(() => {
 })
 
 </script>
+<style lang="scss" src="@/assets/css/main.scss">
+</style>

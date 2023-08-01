@@ -5,6 +5,8 @@ import electron from 'vite-plugin-electron'
 import renderer from 'vite-plugin-electron-renderer'
 import pkg from './package.json'
 import {resolve} from 'path'
+import Components from 'unplugin-vue-components/vite'
+import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command }) => {
@@ -68,6 +70,13 @@ export default defineConfig(({ command }) => {
       ]),
       // Use Node.js API in the Renderer-process
       renderer(),
+      Components({
+        resolvers: [
+          AntDesignVueResolver({
+            importStyle: false
+          })
+        ]
+      })
     ],
     resolve: {
       alias: [

@@ -54,11 +54,11 @@ function initSqlite() {
 }
 
 domReady().then(async () => {
-    try {
-        console.log("start init ....")
-        await initSqlite()
-        console.log("init success")
-    } catch (e) {
-        console.error("init fail: " + e)
-    }
+    // try {
+    //     console.log("start init ....")
+    //     await initSqlite()
+    //     console.log("init success")
+    // } catch (e) {
+    //     console.error("init fail: " + e)
+    // }
 })

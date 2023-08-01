@@ -19,7 +19,7 @@ export const localRouters: RouteRecordRaw[] = [
         children: [
             {
                 path: 'home',
-                component: () => import('@/views/Home/index.vue')
+                component: () => import('@/views/home/index.vue')
             }
         ]
     }

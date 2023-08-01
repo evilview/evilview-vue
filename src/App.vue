@@ -8,4 +8,7 @@
 </template>
 
 <style lang="scss">
+.evil-view-app {
+  display: initial;
+}
 </style>

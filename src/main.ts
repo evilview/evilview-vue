@@ -16,10 +16,8 @@ import '@quasar/extras/themify/themify.css'
 // Import Quasar css
 import 'quasar/dist/quasar.css'
 
-import Vuesax from 'vuesax-alpha'
-import 'vuesax-alpha/theme-chalk/index.css'
-// dark mode
-import 'vuesax-alpha/theme-chalk/dark/css-vars.css'
+import 'ant-design-vue/dist/reset.css';
+
 
 const pinia = createPinia()
 pinia.use(piniaPersist)
@@ -29,8 +27,6 @@ const app = createApp(App)
 app.use(Quasar,{
     plugins: {}
 })
-app.use(Vuesax)
-
 app.use(router)
 app.use(i18n)
 app.use(pinia)
