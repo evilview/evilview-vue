@@ -1,4 +1,5 @@
 import { app, BrowserWindow, shell, ipcMain,dialog } from 'electron'
+import type {} from 'electron'
 import { release } from 'node:os'
 import { join } from 'node:path'
 
@@ -48,6 +49,8 @@ const webPreferences = {
 
 async function createWindow() {
   win = new BrowserWindow({
+    width: 1200,
+    height: 800,
     title: 'Main window',
     autoHideMenuBar: true,
     icon: join(process.env.PUBLIC, 'favicon.ico'),
@@ -78,13 +81,14 @@ app.whenReady().then(async () => {
   try {
     ipcHandles()
     await createWindow()
-
-    if (process.env.VITE_DEV_SERVER_URL) { // electron-vite-vue#298
-      await win.loadURL(url)
-      // Open devTool if the app is not packaged
-      win.webContents.openDevTools()
-    } else {
-      await win.loadFile(indexHtml)
+    if (win) {
+      if (process.env.VITE_DEV_SERVER_URL) { // electron-vite-vue#298
+        await win.loadURL(url)
+        // Open devTool if the app is not packaged
+        win.webContents.openDevTools()
+      } else {
+        await win.loadFile(indexHtml)
+      }
     }
   } catch (err) {
     console.error(err)
@@ -127,7 +131,7 @@ ipcMain.handle('open-win', async (_, arg) => {
 
 // handleFileOpen file[0]
 async function handleFileOpen () {
-  const { canceled, filePaths } = await dialog.showOpenDialog(win,{})
+  const { canceled, filePaths } = await dialog.showOpenDialog(win as BrowserWindow,{})
   if (!canceled) {
     return filePaths[0]
   }

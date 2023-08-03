@@ -1,18 +1,4 @@
-
-export type FieldInfo = {
-    name: string,
-    type: string,
-    notNull: boolean,
-    default?: any
-}
-
-export interface DataBaseInfo {
-    tableName: string,
-    fields: FieldInfo[],
-    data: [...any][],
-    transaction?: boolean,
-    options?: any
-}
+import { DataBaseInfo } from "./model";
 
 // app config
 export const appConfig: DataBaseInfo = {
@@ -47,3 +33,4 @@ export const appConfig: DataBaseInfo = {
         ['./','0.0.1','800','600'],
     ]
 }
+

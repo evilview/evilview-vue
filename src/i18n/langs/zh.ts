@@ -1,4 +1,3 @@
-
 const messages = {
     "Hello": '你好 {0}'
 }

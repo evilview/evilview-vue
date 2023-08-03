@@ -1,4 +1,3 @@
-
 const LocaleKey = 'locale'
 
 export function getLocale(): string {
@@ -6,5 +5,5 @@ export function getLocale(): string {
 }
 
 export function changeLocale(lang: Langs = 'en'): void {
-    localStorage.setItem(LocaleKey,lang)
+    localStorage.setItem(LocaleKey, lang)
 }
