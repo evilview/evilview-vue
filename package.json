@@ -43,10 +43,12 @@
   "dependencies": {
     "@quasar/extras": "^1.16.5",
     "@vueuse/core": "^10.2.1",
+    "ajv": "^8.12.0",
     "ant-design-vue": "4.x",
     "axios": "^1.4.0",
     "better-sqlite3": "^8.5.0",
     "boxicons": "^2.1.4",
+    "dayjs": "^1.11.9",
     "electron-store": "^8.1.0",
     "pinia": "^2.1.4",
     "pinia-plugin-persist": "^1.0.0",

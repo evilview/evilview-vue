@@ -83,6 +83,10 @@ export default defineConfig(({ command }) => {
         {
           find: '@',
           replacement: resolve(__dirname,'./src')
+        },
+        {
+          find: 'vue-i18n', 
+          replacement: 'vue-i18n/dist/vue-i18n.cjs.js'
         }
       ]
     },

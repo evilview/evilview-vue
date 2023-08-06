@@ -2,6 +2,7 @@ import { app, BrowserWindow, shell, ipcMain,dialog } from 'electron'
 import type {} from 'electron'
 import { release } from 'node:os'
 import { join } from 'node:path'
+import store from './store'
 
 // The built directory structure
 //
@@ -15,9 +16,11 @@ import { join } from 'node:path'
 //
 process.env.DIST_ELECTRON = join(__dirname, '..')
 process.env.DIST = join(process.env.DIST_ELECTRON, '../dist')
-process.env.PUBLIC = process.env.VITE_DEV_SERVER_URL
-  ? join(process.env.DIST_ELECTRON, '../public')
-  : process.env.DIST
+process.env.PUBLIC = process.env.VITE_DEV_SERVER_URL ? join(process.env.DIST_ELECTRON, '../public') : process.env.DIST
+
+// main variable
+let win: BrowserWindow | null = null
+
 
 // Disable GPU Acceleration for Windows 7
 if (release().startsWith('6.1')) app.disableHardwareAcceleration()
@@ -35,7 +38,6 @@ if (!app.requestSingleInstanceLock()) {
 // Read more on https://www.electronjs.org/docs/latest/tutorial/security
 // process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true'
 
-let win: BrowserWindow | null = null
 // Here, you can also use other preload
 const preload = join(__dirname, '../preload/index.js')
 const url = process.env.VITE_DEV_SERVER_URL
@@ -75,6 +77,8 @@ async function createWindow() {
 function ipcHandles() {
   ipcMain.handle('say', () => 'hello world')
   ipcMain.handle('dialog:openFile', handleFileOpen)
+  ipcMain.handle('store:get',getStore),
+  ipcMain.handle('store:set',setStore)
 }
 
 app.whenReady().then(async () => {
@@ -136,3 +140,18 @@ async function handleFileOpen () {
     return filePaths[0]
   }
 }
+
+async function getStore(event: Electron.IpcMainInvokeEvent,key: string) {
+  return store.get(key)
+}
+
+async function setStore(event: Electron.IpcMainInvokeEvent,key: string,value: any) {
+  try {
+    if (store.has(key)) {
+      store.set(key,value)
+    }
+  } catch(err: any) {
+    console.error(err)
+  }
+}
+

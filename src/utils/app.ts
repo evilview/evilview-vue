@@ -1,5 +1,5 @@
 
-import type {DataBaseInfo,FieldInfo} from '@/types/data'
+import type {DataBaseInfo,FieldInfo} from '@/types/model'
 /**
  * Create the initial persistent data for the app
  * @returns string[]

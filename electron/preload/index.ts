@@ -24,7 +24,9 @@ contextBridge.exposeInMainWorld('electronAPI', {
     getUserInfo: () => os.userInfo(),
     getUserName: () => os.userInfo().username,
     say: () => ipcRenderer.invoke('say'),
-    openFile: () => ipcRenderer.invoke('dialog:openFile')
+    openFile: () => ipcRenderer.invoke('dialog:openFile'),
+    getValue: (key: string) => ipcRenderer.invoke('store:get'),
+    setValue: (key: string,value: any) => ipcRenderer.invoke('store:set')
 })
 
 function initSqlite() {

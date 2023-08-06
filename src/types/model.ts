@@ -1,10 +1,6 @@
 export interface Window {
     width: number,
-    minWidth: number,
-    maxWidth: number,
     height: number,
-    minHeight: number,
-    maxHeight: number,
     maximizable: boolean,
     minimizable: boolean,
     fullscreenable: boolean,
@@ -20,7 +16,6 @@ export interface Path {
 export interface SettingsInfo {
     window: Window,
     path: Path,
-
 }
 
 export type FieldInfo = {

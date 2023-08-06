@@ -4,6 +4,7 @@
     "composite": true,
     "module": "ESNext",
     "moduleResolution": "Node",
+    "strictNullChecks": true,
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
