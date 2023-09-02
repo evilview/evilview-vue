@@ -3,7 +3,7 @@ import Database from 'better-sqlite3';
 
 const {contextBridge} = require('electron')
 const os = require('node:os')
-import {createAppData,getExistTable} from '@/utils/app'
+import {createAppData, getExistTable} from '@/utils/app'
 import {appConfig} from '@/types/data'
 
 function domReady(condition: DocumentReadyState[] = ['complete', 'interactive']) {
@@ -26,7 +26,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
     say: () => ipcRenderer.invoke('say'),
     openFile: () => ipcRenderer.invoke('dialog:openFile'),
     getValue: (key: string) => ipcRenderer.invoke('store:get'),
-    setValue: (key: string,value: any) => ipcRenderer.invoke('store:set')
+    setValue: (key: string, value: any) => ipcRenderer.invoke('store:set')
 })
 
 function initSqlite() {

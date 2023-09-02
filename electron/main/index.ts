@@ -1,7 +1,8 @@
-import { app, BrowserWindow, shell, ipcMain,dialog } from 'electron'
+import {app, BrowserWindow, shell, ipcMain, dialog} from 'electron'
 import type {} from 'electron'
-import { release } from 'node:os'
-import { join } from 'node:path'
+import {release} from 'node:os'
+import {join} from 'node:path'
+import {Window} from "@/types/model";
 import store from './store'
 
 // The built directory structure
@@ -29,8 +30,8 @@ if (release().startsWith('6.1')) app.disableHardwareAcceleration()
 if (process.platform === 'win32') app.setAppUserModelId(app.getName())
 
 if (!app.requestSingleInstanceLock()) {
-  app.quit()
-  process.exit(0)
+    app.quit()
+    process.exit(0)
 }
 
 // Remove electron security warnings
@@ -44,114 +45,121 @@ const url = process.env.VITE_DEV_SERVER_URL
 const indexHtml = join(process.env.DIST, 'index.html')
 
 const webPreferences = {
-  preload,
-  nodeIntegration: true,
-  contextIsolation: true,
+    preload,
+    nodeIntegration: true,
+    contextIsolation: true,
 }
 
 async function createWindow() {
-  win = new BrowserWindow({
-    width: 1200,
-    height: 800,
-    title: 'Main window',
-    autoHideMenuBar: true,
-    icon: join(process.env.PUBLIC, 'favicon.ico'),
-    webPreferences: webPreferences
-  })
 
-  // Test actively push message to the Electron-Renderer
-  win.webContents.on('did-finish-load', () => {
-    win?.webContents.send('main-process-message', new Date().toLocaleString())
-  })
+    const windowData = store.get('config.window') as Window
 
-  // Make all links open with the browser, not with the application
-  win.webContents.setWindowOpenHandler(({ url }) => {
-    if (url.startsWith('https:')) shell.openExternal(url)
-    return { action: 'deny' }
-  })
-  // win.webContents.on('will-navigate', (event, url) => { }) #344
+    win = new BrowserWindow({
+        width: windowData.width,
+        height: windowData.height,
+        title: 'Main window',
+        autoHideMenuBar: true,
+        icon: join(process.env.PUBLIC, 'favicon.ico'),
+        webPreferences: webPreferences,
+        fullscreen: windowData.fullscreen,
+        fullscreenable: windowData.fullscreenable,
+        center: windowData.center,
+        maximizable: windowData.maximizable,
+        minimizable: windowData.minimizable,
+    })
 
+    // Test actively push message to the Electron-Renderer
+    win.webContents.on('did-finish-load', () => {
+        win?.webContents.send('main-process-message', new Date().toLocaleString())
+    })
+
+    // Make all links open with the browser, not with the application
+    win.webContents.setWindowOpenHandler(({url}) => {
+        if (url.startsWith('https:')) shell.openExternal(url)
+        return {action: 'deny'}
+    })
+    // win.webContents.on('will-navigate', (event, url) => { }) #344
 }
 
 // Define ipc handles
 function ipcHandles() {
-  ipcMain.handle('say', () => 'hello world')
-  ipcMain.handle('dialog:openFile', handleFileOpen)
-  ipcMain.handle('store:get',getStore),
-  ipcMain.handle('store:set',setStore)
+    ipcMain.handle('say', () => 'hello world')
+    ipcMain.handle('dialog:openFile', handleFileOpen)
+    ipcMain.handle('store:get', getStore),
+        ipcMain.handle('store:set', setStore)
 }
 
 app.whenReady().then(async () => {
-  try {
-    ipcHandles()
-    await createWindow()
-    if (win) {
-      if (process.env.VITE_DEV_SERVER_URL) { // electron-vite-vue#298
-        await win.loadURL(url)
-        // Open devTool if the app is not packaged
-        win.webContents.openDevTools()
-      } else {
-        await win.loadFile(indexHtml)
-      }
+    try {
+        ipcHandles()
+        await createWindow()
+        if (win) {
+            if (process.env.VITE_DEV_SERVER_URL) { // electron-vite-vue#298
+                await win.loadURL(url)
+                // Open devTool if the app is not packaged
+                win.webContents.openDevTools()
+            } else {
+                await win.loadFile(indexHtml)
+            }
+        }
+    } catch (err) {
+        console.error(err)
     }
-  } catch (err) {
-    console.error(err)
-  }
 })
 
 app.on('window-all-closed', () => {
-  win = null
-  if (process.platform !== 'darwin') app.quit()
+    win = null
+    if (process.platform !== 'darwin') app.quit()
 })
 
 app.on('second-instance', () => {
-  if (win) {
-    // Focus on the main window if the user tried to open another
-    if (win.isMinimized()) win.restore()
-    win.focus()
-  }
+    if (win) {
+        // Focus on the main window if the user tried to open another
+        if (win.isMinimized()) win.restore()
+        win.focus()
+    }
 })
 
 app.on('activate', async () => {
-  const allWindows = BrowserWindow.getAllWindows()
-  if (allWindows.length) {
-    allWindows[0].focus()
-  } else {
-    await createWindow()
-  }
+    const allWindows = BrowserWindow.getAllWindows()
+    if (allWindows.length) {
+        allWindows[0].focus()
+    } else {
+        await createWindow()
+    }
 })
 
 // New window example arg: new windows url
 ipcMain.handle('open-win', async (_, arg) => {
-  const childWindow = new BrowserWindow({
-    webPreferences: webPreferences
-  })
-  if (process.env.VITE_DEV_SERVER_URL) {
-    await childWindow.loadURL(`${url}#${arg}`)
-  } else {
-    await childWindow.loadFile(indexHtml, { hash: arg })
-  }
+    const childWindow = new BrowserWindow({
+        webPreferences: webPreferences
+    })
+    if (process.env.VITE_DEV_SERVER_URL) {
+        await childWindow.loadURL(`${url}#${arg}`)
+    } else {
+        await childWindow.loadFile(indexHtml, {hash: arg})
+    }
 })
 
 // handleFileOpen file[0]
-async function handleFileOpen () {
-  const { canceled, filePaths } = await dialog.showOpenDialog(win as BrowserWindow,{})
-  if (!canceled) {
-    return filePaths[0]
-  }
-}
-
-async function getStore(event: Electron.IpcMainInvokeEvent,key: string) {
-  return store.get(key)
-}
-
-async function setStore(event: Electron.IpcMainInvokeEvent,key: string,value: any) {
-  try {
-    if (store.has(key)) {
-      store.set(key,value)
+async function handleFileOpen() {
+    const {canceled, filePaths} = await dialog.showOpenDialog(win as BrowserWindow, {})
+    if (!canceled) {
+        return filePaths[0]
     }
-  } catch(err: any) {
-    console.error(err)
-  }
+}
+
+async function getStore(event: Electron.IpcMainInvokeEvent, key: string) {
+    return store.get(key)
+}
+
+async function setStore(event: Electron.IpcMainInvokeEvent, key: string, value: any) {
+    try {
+        if (store.has(key)) {
+            store.set(key, value)
+        }
+    } catch (err: any) {
+        console.error(err)
+    }
 }
 

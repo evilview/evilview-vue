@@ -2,12 +2,12 @@
   "name": "evilview",
   "version": "0.0.1",
   "main": "dist-electron/main/index.js",
-  "description": "A simple photo reader",
+  "description": "A simple photo reader of window and mac",
   "author": "1010014622@qq.com",
   "license": "MIT",
   "private": true,
   "repository": {
-    "url": "https://github.com/AutismPatient/evilview.git",
+    "url": "https://github.com/evilview/evilview-vue.git",
     "type": "private"
   },
   "keywords": [
@@ -44,7 +44,7 @@
     "@quasar/extras": "^1.16.5",
     "@vueuse/core": "^10.2.1",
     "ajv": "^8.12.0",
-    "ant-design-vue": "4.x",
+    "ant-design-vue": "4.0.1",
     "axios": "^1.4.0",
     "better-sqlite3": "^8.5.0",
     "boxicons": "^2.1.4",

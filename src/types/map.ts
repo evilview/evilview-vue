@@ -6,3 +6,5 @@ export const STORE_KEYS: {[key: string]: keyof SettingsInfo} = {
     WINDOW: 'window',
     PATH: 'path'
 }
+
+
