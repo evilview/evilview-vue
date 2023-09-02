@@ -2,6 +2,16 @@
 
 evilview is an image reader based on electron, with modern UI and barrier-free operation, more intuitive and quick display of your computer in a variety of formats of pictures.
 
+
+## Features
+
+- [ ] 📽️ Read the card in movie style
+- [ ] ✒️ Image editing basics
+- [ ] 📦 Support multiple formats(JPG,GIF,PNG,JPEG,PSD....)
+- [ ] 🔎 Way to retrieve all folder
+- [ ] 📂 Keep records and bookmarks
+
+
 ## Quick Start
 
 ### env
@@ -41,12 +51,6 @@ Using additional packaging tool [electron-builder](https://www.electron.build/).
 }
 
 ```
-
-## Features
-
-- [ ] Read the card in movie style
-- [ ] Image editing basics
-- [ ] Support multiple formats(JPG,GIF,PNG,JPEG,PSD....)
 
 ## Reference
 
