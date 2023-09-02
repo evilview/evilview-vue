@@ -21,3 +21,17 @@ h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
+
+@media (prefers-color-scheme: dark) {
+  //body {
+  //  background-color: #333;
+  //  color: white;
+  //}
+}
+
+@media (prefers-color-scheme: light) {
+  //body {
+  //  background-color: #ddd;
+  //  color: black;
+  //}
+}

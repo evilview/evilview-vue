@@ -1,4 +1,4 @@
-import {app, BrowserWindow, shell, ipcMain, dialog} from 'electron'
+import {app, BrowserWindow, shell, ipcMain, dialog, nativeTheme} from 'electron'
 import type {} from 'electron'
 import {release} from 'node:os'
 import {join} from 'node:path'
@@ -66,6 +66,7 @@ async function createWindow() {
         center: windowData.center,
         maximizable: windowData.maximizable,
         minimizable: windowData.minimizable,
+        // frame: false,
     })
 
     // Test actively push message to the Electron-Renderer
@@ -85,8 +86,11 @@ async function createWindow() {
 function ipcHandles() {
     ipcMain.handle('say', () => 'hello world')
     ipcMain.handle('dialog:openFile', handleFileOpen)
-    ipcMain.handle('store:get', getStore),
-        ipcMain.handle('store:set', setStore)
+    ipcMain.handle('store:get', getStore)
+    ipcMain.handle('store:set', setStore)
+    ipcMain.handle('dark-mode:toggle', darkModeToggle)
+    ipcMain.handle('dark-mode:get', getMode)
+    ipcMain.handle('dark-mode:getDark', getDarkMode)
 }
 
 app.whenReady().then(async () => {
@@ -163,3 +167,14 @@ async function setStore(event: Electron.IpcMainInvokeEvent, key: string, value: 
     }
 }
 
+function darkModeToggle(event: Electron.IpcMainInvokeEvent, mode: "system" | "light" | "dark") {
+    nativeTheme.themeSource = mode
+}
+
+function getMode() {
+    return nativeTheme.themeSource
+}
+
+function getDarkMode() {
+    return nativeTheme.shouldUseDarkColors
+}

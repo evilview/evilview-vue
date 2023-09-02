@@ -6,6 +6,7 @@ const os = require('node:os')
 import {createAppData, getExistTable} from '@/utils/app'
 import {appConfig} from '@/types/data'
 
+// Checking for readiness at dom
 function domReady(condition: DocumentReadyState[] = ['complete', 'interactive']) {
     return new Promise((resolve) => {
         if (condition.includes(document.readyState)) {
@@ -25,8 +26,11 @@ contextBridge.exposeInMainWorld('electronAPI', {
     getUserName: () => os.userInfo().username,
     say: () => ipcRenderer.invoke('say'),
     openFile: () => ipcRenderer.invoke('dialog:openFile'),
-    getValue: (key: string) => ipcRenderer.invoke('store:get'),
-    setValue: (key: string, value: any) => ipcRenderer.invoke('store:set')
+    getValue: (key: string) => ipcRenderer.invoke('store:get',key),
+    setValue: (key: string, value: any) => ipcRenderer.invoke('store:set',key,value),
+    darkModeToggle: (mode: "system" | "light" | "dark") => ipcRenderer.invoke('dark-mode:toggle',mode),
+    getCurrentMode: () => ipcRenderer.invoke('dark-mode:get'),
+    getShouldDarkMode: () => ipcRenderer.invoke('dark-mode:getDark')
 })
 
 function initSqlite() {
