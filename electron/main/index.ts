@@ -47,6 +47,7 @@ const indexHtml = join(process.env.DIST, 'index.html')
 const webPreferences = {
     preload,
     nodeIntegration: true,
+    // must be set to true for security
     contextIsolation: true,
 }
 
@@ -66,7 +67,7 @@ async function createWindow() {
         center: windowData.center,
         maximizable: windowData.maximizable,
         minimizable: windowData.minimizable,
-        // frame: false,
+        frame: false,
     })
 
     // Test actively push message to the Electron-Renderer

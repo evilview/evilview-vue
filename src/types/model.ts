@@ -8,16 +8,19 @@ export interface Window {
     center: boolean,
 }
 
+// path
 export interface Path {
     userPath: string,
     documentPath: string
 }
 
+// setting
 export interface SettingsInfo {
     window: Window,
     path: Path,
 }
 
+// file info
 export type FieldInfo = {
     name: string,
     type: string,
@@ -25,6 +28,7 @@ export type FieldInfo = {
     default?: any
 }
 
+// db data interface
 export interface DataBaseInfo {
     tableName: string,
     fields: FieldInfo[],

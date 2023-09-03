@@ -2,14 +2,7 @@
   <div class="viewer-main">
     {{ sayMsg }}: {{ mode }}
     <br />
-    <div class="q-gutter-sm">
-      <q-btn color="primary" @click="toggleDarkMode">
-        Dark Toggle
-      </q-btn>
-      <q-btn color="primary" @click="resetSystemMode">
-        To System
-      </q-btn>
-    </div>
+    <q-icon name="o_home"></q-icon>
   </div>
 </template>
 

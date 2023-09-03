@@ -8,7 +8,9 @@ export const userStore = defineStore('userStore',{
         }
     },
     actions: {
-        
+        setUser() {
+            
+        }
     },
     persist: {
         enabled: true,

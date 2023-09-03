@@ -27,6 +27,9 @@ h1 {
   //  background-color: #333;
   //  color: white;
   //}
+  .viewer_side-content {
+    background-color: #1e2022;
+  }
 }
 
 @media (prefers-color-scheme: light) {
@@ -34,4 +37,12 @@ h1 {
   //  background-color: #ddd;
   //  color: black;
   //}
+
+  .viewer_side-content {
+    background-color: #f5f6f7;
+  }
+}
+
+.flex-1 {
+  flex: 1;
 }
