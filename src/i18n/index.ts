@@ -8,15 +8,11 @@ import { getLocale } from "@/utils/storage";
 
 const i18n = createI18n({
     locale: getLocale(),
+    legacy: false,
     fallbackLocale: 'en',
-    allowComposition: true,
     messages: {
-        zh: {
-            message: {...zh}
-        },
-        en: {
-            message: {...en}
-        }
+        zh: {...zh},
+        en: {...en}
     }
 })
 

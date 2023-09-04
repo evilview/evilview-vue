@@ -3,6 +3,7 @@
     {{ sayMsg }}: {{ mode }}
     <br />
     <q-icon name="o_home"></q-icon>
+    {{ t('Hello') }}
   </div>
 </template>
 

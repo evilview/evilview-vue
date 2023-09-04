@@ -4,9 +4,11 @@ import vue from '@vitejs/plugin-vue'
 import electron from 'vite-plugin-electron'
 import renderer from 'vite-plugin-electron-renderer'
 import pkg from './package.json'
-import {resolve} from 'path'
+import { resolve, dirname } from 'path'
+import { fileURLToPath } from 'url'
 import Components from 'unplugin-vue-components/vite'
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
+import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command }) => {
@@ -19,6 +21,11 @@ export default defineConfig(({ command }) => {
   return {
     plugins: [
       vue(),
+      VueI18nPlugin({
+        /* options */
+        // locale messages resource pre-compile option
+        include: resolve(dirname(fileURLToPath(import.meta.url)), './src/i18n/langs/**'),
+      }),
       electron([
         {
           // Main-Process entry file of the Electron App.
@@ -53,7 +60,7 @@ export default defineConfig(({ command }) => {
               alias: [
                 {
                   find: '@',
-                  replacement: resolve(__dirname,'./src')
+                  replacement: resolve(__dirname, './src')
                 }
               ]
             },
@@ -82,11 +89,7 @@ export default defineConfig(({ command }) => {
       alias: [
         {
           find: '@',
-          replacement: resolve(__dirname,'./src')
-        },
-        {
-          find: 'vue-i18n', 
-          replacement: 'vue-i18n/dist/vue-i18n.cjs.js'
+          replacement: resolve(__dirname, './src')
         }
       ]
     },

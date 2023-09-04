@@ -18,7 +18,6 @@ export const localRouters: RouteRecordRaw[] = [
         component: () => import('@/layout/app_layout.vue'),
         redirect: '/home',
         meta: {
-            layout: true,
             hidden: true
         },
         children: [
@@ -27,7 +26,8 @@ export const localRouters: RouteRecordRaw[] = [
                 name: 'home',
                 component: () => import('@/views/home/index.vue'),
                 meta: {
-                    icon: 'home',
+                    layout: true,
+                    icon: 'o_home',
                     title: 'Field.Home'
                 }
             },
@@ -36,7 +36,8 @@ export const localRouters: RouteRecordRaw[] = [
                 name: 'search',
                 component: () => import('@/views/search/index.vue'),
                 meta: {
-                    icon: 'search',
+                    layout: true,
+                    icon: 'image_search',
                     title: 'Field.Search'
                 }
             },
@@ -45,7 +46,8 @@ export const localRouters: RouteRecordRaw[] = [
                 name: 'favorite',
                 component: () => import('@/views/favorite/index.vue'),
                 meta: {
-                    icon: 'favorite',
+                    layout: true,
+                    icon: 'favorite_border',
                     title: 'Field.Favorite'
                 }
             },
@@ -54,21 +56,22 @@ export const localRouters: RouteRecordRaw[] = [
                 name: 'folder',
                 component: () => import('@/views/folder/index.vue'),
                 meta: {
-                    icon: 'folder',
+                    layout: true,
+                    icon: 'o_folder',
                     title: 'Field.Folder'
                 }
             },
+            {
+                path: '/settings',
+                name: 'settings',
+                component: () => import('@/views/settings/index.vue'),
+                meta: {
+                    hidden: false,
+                    icon: 'o_settings',
+                    title: 'Field.Setting'
+                }
+            },
         ]
-    },
-    {
-        path: '/settings',
-        name: 'settings',
-        component: () => import('@/views/settings/index.vue'),
-        meta: {
-            layout: true,
-            icon: 'settings',
-            title: 'Field.Setting'
-        }
     },
     {
         path: '/init',

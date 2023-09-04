@@ -5,7 +5,7 @@ import i18n from './i18n'
 import { createPinia } from "pinia";
 import piniaPersist from 'pinia-plugin-persist';
 import router from './router';
-import 'boxicons'
+import 'boxicons' 
 
 // import ui library
 
