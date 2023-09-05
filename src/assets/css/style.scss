@@ -9,7 +9,6 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -30,6 +29,14 @@ h1 {
   .viewer_side-content {
     background-color: #1e2022;
   }
+
+  .viewer_layout-main .viewer_side-content,.viewer_header-content {
+    color: #bfbfbf;
+  }
+
+  .viewer_header-content {
+    border-bottom: 1px solid #252525;
+  }
 }
 
 @media (prefers-color-scheme: light) {
@@ -41,6 +48,15 @@ h1 {
   .viewer_side-content {
     background-color: #f5f6f7;
   }
+
+  .viewer_layout-main .viewer_side-content,.viewer_header-content {
+    color: #545454;
+  }
+
+  .viewer_header-content {
+    border-bottom: 1px solid #eee;
+  }
+
 }
 
 .flex-1 {

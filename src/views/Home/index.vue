@@ -10,9 +10,6 @@
 <script lang="ts" setup>
 import useLocale from '@/hook/useLocale'
 import {onMounted, ref} from "vue"
-import { useQuasar } from 'quasar'
-
-const $q = useQuasar()
 
 const {i18n: {t}} = useLocale()
 
@@ -28,33 +25,8 @@ const msg = async () => {
   }
 }
 
-async function toggleDarkMode() {
-  try {
-    const isDark = await ipc.getShouldDarkMode()
-    await ipc.darkModeToggle(isDark ? 'light':'dark')
-    $q.dark.set(!isDark)
-    await getMode()
-  } catch (err: any) {
-    throw err
-  }
-}
-async function resetSystemMode() {
-  try {
-    await ipc.darkModeToggle('system')
-    $q.dark.set('auto')
-    await getMode()
-  } catch (err: any) {
-    throw err
-  }
-}
-
-async function getMode() {
-  mode.value = await ipc.getCurrentMode()
-}
-
 onMounted(() => {
   msg()
-  getMode()
 })
 
 </script>

@@ -8,6 +8,7 @@
         flex-direction: column;
         justify-content: space-between;
         padding: 36px 12px;
+        padding-bottom: 18px;
 
         .viewer_logo {
             width: 1.8em;
@@ -23,12 +24,14 @@
     }
 
     .viewer_header-content {
+        display: flex;
+        gap: 8px;
+        justify-content: flex-end;
         position: sticky;
-        padding: 24px 36px;
+        padding: 14px 24px;
     }
 
     .viewer_layout-content {
-        margin-top: 2.4em;
         padding: 3em;
     }
 }

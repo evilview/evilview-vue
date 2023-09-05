@@ -27,7 +27,7 @@ export const localRouters: RouteRecordRaw[] = [
                 component: () => import('@/views/home/index.vue'),
                 meta: {
                     layout: true,
-                    icon: 'o_home',
+                    icon: 'o_perm_media',
                     title: 'Field.Home'
                 }
             },
