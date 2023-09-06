@@ -30,7 +30,10 @@ contextBridge.exposeInMainWorld('electronAPI', {
     setValue: (key: string, value: any) => ipcRenderer.invoke('store:set',key,value),
     darkModeToggle: (mode: "system" | "light" | "dark") => ipcRenderer.invoke('dark-mode:toggle',mode),
     getCurrentMode: () => ipcRenderer.invoke('dark-mode:get'),
-    getShouldDarkMode: () => ipcRenderer.invoke('dark-mode:getDark')
+    getShouldDarkMode: () => ipcRenderer.invoke('dark-mode:getDark'),
+    windowMinimize :() => ipcRenderer.invoke('window:minimize'),
+    windowToggleFullscreen :() => ipcRenderer.invoke('window:toggleFullscreen'),
+    closeWindow :() => ipcRenderer.invoke('window:closeWindow'),
 })
 
 function initSqlite() {

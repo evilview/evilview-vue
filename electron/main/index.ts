@@ -92,6 +92,9 @@ function ipcHandles() {
     ipcMain.handle('dark-mode:toggle', darkModeToggle)
     ipcMain.handle('dark-mode:get', getMode)
     ipcMain.handle('dark-mode:getDark', getDarkMode)
+    ipcMain.handle('window:minimize', windowMinimize)
+    ipcMain.handle('window:toggleFullscreen', windowToggleFullscreen)
+    ipcMain.handle('window:closeWindow', closeWindow)
 }
 
 app.whenReady().then(async () => {
@@ -178,4 +181,20 @@ function getMode() {
 
 function getDarkMode() {
     return nativeTheme.shouldUseDarkColors
+}
+
+function windowMinimize() {
+    win?.minimize()
+}
+
+function windowToggleFullscreen() {
+    if (win?.isMaximized()) {
+        win?.restore()
+    } else {
+        win?.maximize()
+    }
+}
+
+function closeWindow() {
+    app.quit()
 }

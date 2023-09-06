@@ -20,9 +20,9 @@
     </div>
     <div class="flex-1">
       <div class="viewer_header-content flex-1">
-        <q-btn flat round icon="o_remove" size="small"></q-btn>
-        <q-btn flat round icon="o_crop_5_4" size="small"></q-btn>
-        <q-btn flat round icon="o_clear" size="small"></q-btn>
+        <q-btn flat round icon="o_remove" size="small" @click="minimize"></q-btn>
+        <q-btn flat round icon="o_crop_5_4" size="small" @click="toggleFullscreen"></q-btn>
+        <q-btn flat round icon="o_clear" size="small" @click="closeWindow"></q-btn>
       </div>
       <div class="viewer_layout-content flex-1">
         <RouterView></RouterView>
@@ -98,6 +98,18 @@ async function resetSystemMode() {
 
 async function getMode() {
   darkMode.value = await ipc.getShouldDarkMode()
+}
+
+function minimize() {
+  ipc.windowMinimize()
+}
+
+function toggleFullscreen() {
+  ipc.windowToggleFullscreen()
+}
+
+function closeWindow() {
+  ipc.closeWindow()
 }
 
 onMounted(() => {

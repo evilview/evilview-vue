@@ -29,6 +29,10 @@
         justify-content: flex-end;
         position: sticky;
         padding: 14px 24px;
+        -webkit-app-region: drag;
+        & > .q-btn {
+            -webkit-app-region: no-drag;
+        }
     }
 
     .viewer_layout-content {
