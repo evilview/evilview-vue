@@ -1,6 +1,6 @@
 import { computed } from "vue";
 import { useI18n } from "vue-i18n";
-import {Langs} from '@/types/map'
+import { Langs } from '@/types/map'
 
 export default function useLocale() {
   const i18n = useI18n()

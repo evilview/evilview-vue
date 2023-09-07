@@ -5,4 +5,6 @@ export default {
     "Field.Favorite": '收藏夹',
     "Field.Folder": '历史文件夹',
     "Field.Setting": '设置',
+    "Field.Show": '显示',
+    "Field.Exit": '退出'
 }

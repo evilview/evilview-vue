@@ -1,8 +1,8 @@
-import {app, BrowserWindow, shell, ipcMain, dialog, nativeTheme} from 'electron'
-import type {} from 'electron'
-import {release} from 'node:os'
-import {join} from 'node:path'
-import {Window} from "@/types/model";
+import { app, BrowserWindow, shell, ipcMain, dialog, nativeTheme, nativeImage, Menu } from 'electron'
+import { Tray } from 'electron'
+import { release } from 'node:os'
+import { join } from 'node:path'
+import { Window } from "@/types/model";
 import store from './store'
 
 // The built directory structure
@@ -21,7 +21,26 @@ process.env.PUBLIC = process.env.VITE_DEV_SERVER_URL ? join(process.env.DIST_ELE
 
 // main variable
 let win: BrowserWindow | null = null
-
+let tray: Tray | null = null
+const contextMenu = Menu.buildFromTemplate([
+    {
+        label: 'Show',
+        type: 'normal',
+        click: () => {
+            win?.restore()
+        }
+    },
+    {
+        type: 'separator'
+    },
+    {
+        label: 'Exit',
+        type: 'normal',
+        click: () => {
+            appExit()
+        }
+    }
+])
 
 // Disable GPU Acceleration for Windows 7
 if (release().startsWith('6.1')) app.disableHardwareAcceleration()
@@ -30,8 +49,7 @@ if (release().startsWith('6.1')) app.disableHardwareAcceleration()
 if (process.platform === 'win32') app.setAppUserModelId(app.getName())
 
 if (!app.requestSingleInstanceLock()) {
-    app.quit()
-    process.exit(0)
+    appExit()
 }
 
 // Remove electron security warnings
@@ -76,9 +94,9 @@ async function createWindow() {
     })
 
     // Make all links open with the browser, not with the application
-    win.webContents.setWindowOpenHandler(({url}) => {
+    win.webContents.setWindowOpenHandler(({ url }) => {
         if (url.startsWith('https:')) shell.openExternal(url)
-        return {action: 'deny'}
+        return { action: 'deny' }
     })
     // win.webContents.on('will-navigate', (event, url) => { }) #344
 }
@@ -101,6 +119,7 @@ app.whenReady().then(async () => {
     try {
         ipcHandles()
         await createWindow()
+        initTray()
         if (win) {
             if (process.env.VITE_DEV_SERVER_URL) { // electron-vite-vue#298
                 await win.loadURL(url)
@@ -145,13 +164,18 @@ ipcMain.handle('open-win', async (_, arg) => {
     if (process.env.VITE_DEV_SERVER_URL) {
         await childWindow.loadURL(`${url}#${arg}`)
     } else {
-        await childWindow.loadFile(indexHtml, {hash: arg})
+        await childWindow.loadFile(indexHtml, { hash: arg })
     }
 })
 
+function appExit() {
+    app.quit()
+    process.exit(0)
+}
+
 // handleFileOpen file[0]
 async function handleFileOpen() {
-    const {canceled, filePaths} = await dialog.showOpenDialog(win as BrowserWindow, {})
+    const { canceled, filePaths } = await dialog.showOpenDialog(win as BrowserWindow, {})
     if (!canceled) {
         return filePaths[0]
     }
@@ -197,4 +221,17 @@ function windowToggleFullscreen() {
 
 function closeWindow() {
     app.quit()
+}
+
+function initTray() {
+    try {
+        // Icon on the path to distinguish the development environment and packaging environment
+        const icon = nativeImage.createFromPath(join(process.env.DIST, '../src/assets/images/vite.svg'))
+        tray = new Tray(icon)
+        tray.setContextMenu(contextMenu)
+        tray.setToolTip('This is my application')
+        tray.setTitle('This is my title')
+    } catch (err) {
+        throw err
+    }
 }

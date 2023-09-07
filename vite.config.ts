@@ -107,6 +107,11 @@ export default defineConfig(({ command }) => {
           additionalData: '@import "@/assets/css/config.scss";'
         }
       }
+    },
+    build: {
+      rollupOptions: {
+        external: []
+      }
     }
   }
 })

@@ -5,4 +5,6 @@ export default  {
     "Field.Favorite": 'Favorite',
     "Field.Folder": 'Folders',
     "Field.Setting": 'Settings',
+    "Field.Show": 'Show',
+    "Field.Exit": 'Exit'
 }
