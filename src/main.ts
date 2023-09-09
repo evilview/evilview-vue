@@ -24,6 +24,7 @@ pinia.use(piniaPersist)
 const app = createApp(App)
 
 app.use(Quasar,{
+    
 })
 app.use(router)
 app.use(i18n)

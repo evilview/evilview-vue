@@ -37,6 +37,10 @@ h1 {
   .viewer_header-content {
     border-bottom: 1px solid #252525;
   }
+
+  .doc-search__kbd {
+    color: rgba(255, 255, 255, 0.7);
+  }
 }
 
 @media (prefers-color-scheme: light) {
@@ -55,6 +59,10 @@ h1 {
 
   .viewer_header-content {
     border-bottom: 1px solid #eee;
+  }
+
+  .doc-search__kbd {
+    color: initial;
   }
 
 }

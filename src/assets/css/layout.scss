@@ -27,10 +27,35 @@
         display: flex;
         gap: 8px;
         justify-content: flex-end;
+        align-items: center;
         position: sticky;
         padding: 14px 24px;
         -webkit-app-region: drag;
-        & > .q-btn {
+
+        .header_search {
+            width: 28%;
+            margin-right: 2em;
+
+            .q-field--standout.q-field--dark.q-field--highlighted {
+
+                .q-field__prepend,.q-field__native {
+                    color: #ddd !important;
+                }
+            }
+
+            .doc-search__kbd {
+                box-shadow: none!important;
+                font-size: .8rem;
+                background: transparent!important;
+            }
+        }
+
+        .header_action {
+
+        }
+
+        // sole settings no drag in class
+        .q-btn,.q-input {
             -webkit-app-region: no-drag;
         }
     }

@@ -226,11 +226,13 @@ function closeWindow() {
 function initTray() {
     try {
         // Icon on the path to distinguish the development environment and packaging environment
-        const icon = nativeImage.createFromPath(join(process.env.DIST, '../src/assets/images/vite.svg'))
+        const icon = nativeImage.createFromPath(join(process.env.PUBLIC, 'favicon.ico'))
         tray = new Tray(icon)
         tray.setContextMenu(contextMenu)
-        tray.setToolTip('This is my application')
-        tray.setTitle('This is my title')
+        tray.setToolTip(app.name)
+        tray.addListener('double-click',() => {
+            win?.restore()
+        })
     } catch (err) {
         throw err
     }
