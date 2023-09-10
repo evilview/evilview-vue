@@ -9,9 +9,9 @@
 
 <script lang="ts" setup>
 import useLocale from '@/hook/useLocale'
-import {onMounted, ref} from "vue"
+import { onMounted, ref } from "vue"
 
-const {i18n: {t}} = useLocale()
+const { i18n: { t } } = useLocale()
 
 const ipc = window.electronAPI
 let mode = ref<string>('')
@@ -30,5 +30,4 @@ onMounted(() => {
 })
 
 </script>
-<style lang="scss" src="@/assets/css/main.scss">
-</style>
+<style lang="scss" src="@/assets/css/main.scss"></style>

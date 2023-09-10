@@ -34,6 +34,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
     windowMinimize :() => ipcRenderer.invoke('window:minimize'),
     windowToggleFullscreen :() => ipcRenderer.invoke('window:toggleFullscreen'),
     closeWindow :() => ipcRenderer.invoke('window:closeWindow'),
+    getWindowIsMaximized: () => ipcRenderer.invoke('window:getMaximized'),
 })
 
 function initSqlite() {

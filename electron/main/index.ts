@@ -113,6 +113,7 @@ function ipcHandles() {
     ipcMain.handle('window:minimize', windowMinimize)
     ipcMain.handle('window:toggleFullscreen', windowToggleFullscreen)
     ipcMain.handle('window:closeWindow', closeWindow)
+    ipcMain.handle('window:getMaximized',getWindowIsMaximized)
 }
 
 app.whenReady().then(async () => {
@@ -219,6 +220,10 @@ function windowToggleFullscreen() {
     }
 }
 
+function getWindowIsMaximized() {
+    return win?.isMaximized()
+}
+
 function closeWindow() {
     app.quit()
 }
@@ -226,7 +231,7 @@ function closeWindow() {
 function initTray() {
     try {
         // Icon on the path to distinguish the development environment and packaging environment
-        const icon = nativeImage.createFromPath(join(process.env.PUBLIC, 'favicon.ico'))
+        const icon = nativeImage.createFromPath(join(process.env.PUBLIC, 'logo.svg'))
         tray = new Tray(icon)
         tray.setContextMenu(contextMenu)
         tray.setToolTip(app.name)
