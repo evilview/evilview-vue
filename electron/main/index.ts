@@ -2,8 +2,10 @@ import { app, BrowserWindow, shell, ipcMain, dialog, nativeTheme, nativeImage, M
 import { Tray } from 'electron'
 import { release } from 'node:os'
 import { join } from 'node:path'
-import { Window } from "@/types/model";
+import { Window } from "@/types/model"
 import store from './store'
+
+const { I18n } = require('i18n')
 
 // The built directory structure
 //
@@ -18,30 +20,14 @@ import store from './store'
 process.env.DIST_ELECTRON = join(__dirname, '..')
 process.env.DIST = join(process.env.DIST_ELECTRON, '../dist')
 process.env.PUBLIC = process.env.VITE_DEV_SERVER_URL ? join(process.env.DIST_ELECTRON, '../public') : process.env.DIST
+process.env.LOCALES = process.env.VITE_DEV_SERVER_URL ? join(process.env.DIST_ELECTRON,'../locales') : join(process.env.DIST,"locales")
 
 // main variable
 let win: BrowserWindow | null = null
 let tray: Tray | null = null
-const contextMenu = Menu.buildFromTemplate([
-    {
-        label: 'Show',
-        type: 'normal',
-        click: () => {
-            win?.restore()
-        }
-    },
-    {
-        type: 'separator'
-    },
-    {
-        label: 'Exit',
-        type: 'normal',
-        click: () => {
-            appExit()
-        }
-    }
-])
+let i18n = new I18n()
 let windowData: Window | null = null
+let contextMenu: Electron.Menu | null = null
 
 // Disable GPU Acceleration for Windows 7
 if (release().startsWith('6.1')) app.disableHardwareAcceleration()
@@ -90,7 +76,7 @@ async function createWindow() {
 
     // Make all links open with the browser, not with the application
     win.webContents.setWindowOpenHandler(({ url }) => {
-        if (url.startsWith('https:')) shell.openExternal(url)
+        if (url.startsWith('https:') || url.startsWith('http:')) shell.openExternal(url)
         return { action: 'deny' }
     })
     // win.webContents.on('will-navigate', (event, url) => { }) #344
@@ -115,6 +101,8 @@ app.whenReady().then(async () => {
     try {
         ipcHandles()
         await createWindow()
+        initI18n()
+        setContextMenu()
         initTray()
         if (win) {
             if (process.env.VITE_DEV_SERVER_URL) { // electron-vite-vue#298
@@ -236,4 +224,42 @@ function initTray() {
     } catch (err) {
         throw err
     }
+}
+
+function initI18n() {
+    try {
+
+        i18n.configure({
+            locales: ['en','zh'],
+            defaultLocale: 'en',
+            directory: process.env.LOCALES,
+            logWarnFn: (msg: string) => {
+                console.warn('warn',msg)
+            }
+        })
+    } catch(err) {
+        throw err
+    }
+}
+
+function setContextMenu() {
+    contextMenu = Menu.buildFromTemplate([
+        {
+            label: i18n?.__('Show'),
+            type: 'normal',
+            click: () => {
+                win?.restore()
+            }
+        },
+        {
+            type: 'separator'
+        },
+        {
+            label: i18n?.__('Exit'),
+            type: 'normal',
+            click: () => {
+                appExit()
+            }
+        }
+    ])
 }
