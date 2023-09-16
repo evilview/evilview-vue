@@ -51,6 +51,7 @@
     "boxicons": "^2.1.4",
     "dayjs": "^1.11.9",
     "electron-store": "^8.1.0",
+    "i18n": "^0.15.1",
     "mitt": "^3.0.1",
     "pinia": "^2.1.6",
     "pinia-plugin-persist": "^1.0.0",
