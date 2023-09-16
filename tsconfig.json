@@ -4,6 +4,8 @@
     "useDefineForClassFields": true,
     "module": "ESNext",
     "moduleResolution": "Node",
+    "strictNullChecks": true,
+    "forceConsistentCasingInFileNames": true,
     "strict": true,
     "jsx": "preserve",
     "resolveJsonModule": true,
@@ -19,7 +21,7 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src"],
+  "include": ["src","electron"],
   "references": [
     { "path": "./tsconfig.node.json" }
   ]

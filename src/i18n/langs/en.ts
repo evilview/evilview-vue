@@ -1,5 +1,10 @@
-const messages = {
-    "Hello": 'Hello {0}'
+export default  {
+    "Hello": 'hello {0}',
+    "Field.Home": 'Home',
+    "Field.Search": 'Search',
+    "Field.Favorite": 'Favorite',
+    "Field.Folder": 'Folders',
+    "Field.Setting": 'Settings',
+    "Field.Show": 'Show',
+    "Field.Exit": 'Exit'
 }
-
-export default messages

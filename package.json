@@ -2,12 +2,12 @@
   "name": "evilview",
   "version": "0.0.1",
   "main": "dist-electron/main/index.js",
-  "description": "A simple photo reader",
+  "description": "A simple photo reader of window and mac",
   "author": "1010014622@qq.com",
   "license": "MIT",
   "private": true,
   "repository": {
-    "url": "https://github.com/AutismPatient/evilview.git",
+    "url": "https://github.com/evilview/evilview-vue.git",
     "type": "private"
   },
   "keywords": [
@@ -19,16 +19,22 @@
       "VITE_DEV_SERVER_URL": "http://127.0.0.1:3344/"
     }
   },
+  "build": {},
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build && electron-builder",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "rebuild": "electron-rebuild --runtime=electron --target=25.0.1 -f -w better-sqlite3"
   },
   "devDependencies": {
+    "@electron/rebuild": "^3.2.13",
+    "@intlify/unplugin-vue-i18n": "^0.13.0",
+    "@quasar/vite-plugin": "^1.4.1",
     "@vitejs/plugin-vue": "^4.1.0",
-    "electron": "^25.0.1",
+    "electron": "25.8.0",
     "electron-builder": "^24.4.0",
     "typescript": "^5.0.2",
+    "unplugin-vue-components": "^0.25.1",
     "vite": "^4.1.4",
     "vite-plugin-electron": "^0.12.0",
     "vite-plugin-electron-renderer": "^0.14.1",
@@ -36,12 +42,21 @@
     "vue-tsc": "^1.2.0"
   },
   "dependencies": {
+    "@quasar/extras": "^1.16.5",
     "@vueuse/core": "^10.2.1",
-    "axios": "^1.4.0",
-    "pinia": "^2.1.4",
+    "ajv": "^8.12.0",
+    "ant-design-vue": "4.0.2",
+    "axios": "^1.5.0",
+    "better-sqlite3": "^8.5.2",
+    "boxicons": "^2.1.4",
+    "dayjs": "^1.11.9",
+    "electron-store": "^8.1.0",
+    "mitt": "^3.0.1",
+    "pinia": "^2.1.6",
     "pinia-plugin-persist": "^1.0.0",
-    "sass": "^1.63.6",
-    "vue-i18n": "9",
-    "vue-router": "4"
+    "quasar": "^2.12.6",
+    "sass": "^1.66.1",
+    "vue-i18n": "^9.2.2",
+    "vue-router": "^4.2.4"
   }
 }

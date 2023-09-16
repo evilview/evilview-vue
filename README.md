@@ -2,6 +2,16 @@
 
 evilview is an image reader based on electron, with modern UI and barrier-free operation, more intuitive and quick display of your computer in a variety of formats of pictures.
 
+
+## Features
+
+- [ ] 📽️ Read the card in movie style
+- [ ] ✒️ Image editing basics
+- [ ] 📦 Support multiple formats(JPG,GIF,PNG,JPEG,PSD....)
+- [ ] 🔎 Way to retrieve all folder
+- [ ] 📂 Keep records and bookmarks
+
+
 ## Quick Start
 
 ### env
@@ -21,15 +31,26 @@ yarn dev
 ```
 
 ### build
-```
+Distribute using electron-builder
+```shell
 yarn build
 ```
+Installing modules and rebuilding for Electron
+```shell
+yarn rebuild # electron-rebuild -f -w better-sqlite3 ...
+```
 
-## Features
+### builder config
+Using additional packaging tool [electron-builder](https://www.electron.build/).
+```
+# ./package.json
 
-- [ ] Read the card in movie style
-- [ ] Image editing basics
-- [ ] Support multiple formats(JPG,GIF,PNG,JPEG,PSD....)
+"build": {
+  "appId": "com.example.app",
+  ....
+}
+
+```
 
 ## Reference
 
@@ -37,3 +58,9 @@ yarn build
 - [Vuejs](https://vuejs.org/)
 - [Vite](https://vitejs.dev/)
 - [Sqlite](https://sqlite.org/index.html)
+
+## License
+
+Copyright (c) 2023 evilview
+
+[MIT License](http://en.wikipedia.org/wiki/MIT_License)

@@ -1,0 +1,62 @@
+.viewer_layout-main {
+    height: 100vh;
+    display: flex;
+    position: relative;
+
+    .viewer_side-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 36px 12px;
+        padding-bottom: 18px;
+
+        .viewer_logo {
+            width: 1.8em;
+            margin-bottom: 1.5em;
+        }
+
+        .viewer_side-content-item {
+            display: flex;
+            flex-direction: column;
+            gap: .5em;
+            align-items: center;
+        }
+    }
+
+    .viewer_header-content {
+        display: flex;
+        gap: 8px;
+        justify-content: flex-end;
+        align-items: center;
+        position: sticky;
+        padding: 14px 24px;
+        -webkit-app-region: drag;
+
+        .header_search {
+            width: 28%;
+            margin-right: 2em;
+
+            .q-field--standout.q-field--dark.q-field--highlighted {
+
+                .q-field__prepend,.q-field__native {
+                    color: #ddd !important;
+                }
+            }
+
+            .doc-search__kbd {
+                box-shadow: none!important;
+                font-size: .8rem;
+                background: transparent!important;
+            }
+        }
+
+        // sole settings no drag in class
+        .q-btn,.q-input {
+            -webkit-app-region: no-drag;
+        }
+    }
+
+    .viewer_layout-content {
+        padding: 3em;
+    }
+}
