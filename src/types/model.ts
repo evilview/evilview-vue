@@ -1,6 +1,8 @@
 export interface Window {
     width: number,
     height: number,
+    minWidth: number,
+    minHeight: number,
     maximizable: boolean,
     minimizable: boolean,
     fullscreenable: boolean,

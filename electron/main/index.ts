@@ -41,6 +41,7 @@ const contextMenu = Menu.buildFromTemplate([
         }
     }
 ])
+let windowData: Window | null = null
 
 // Disable GPU Acceleration for Windows 7
 if (release().startsWith('6.1')) app.disableHardwareAcceleration()
@@ -71,20 +72,14 @@ const webPreferences = {
 
 async function createWindow() {
 
-    const windowData = store.get('config.window') as Window
+    windowData = store.get('config.window') as Window
 
     win = new BrowserWindow({
-        width: windowData.width,
-        height: windowData.height,
+        ...windowData,
         title: 'Main window',
         autoHideMenuBar: true,
         icon: join(process.env.PUBLIC, 'favicon.ico'),
         webPreferences: webPreferences,
-        fullscreen: windowData.fullscreen,
-        fullscreenable: windowData.fullscreenable,
-        center: windowData.center,
-        maximizable: windowData.maximizable,
-        minimizable: windowData.minimizable,
         frame: false,
     })
 
@@ -231,7 +226,7 @@ function closeWindow() {
 function initTray() {
     try {
         // Icon on the path to distinguish the development environment and packaging environment
-        const icon = nativeImage.createFromPath(join(process.env.PUBLIC, 'logo.svg'))
+        const icon = nativeImage.createFromPath(join(process.env.PUBLIC, 'favicon.ico'))
         tray = new Tray(icon)
         tray.setContextMenu(contextMenu)
         tray.setToolTip(app.name)
