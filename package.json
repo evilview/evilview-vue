@@ -24,14 +24,14 @@
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build && electron-builder",
     "preview": "vite preview",
-    "rebuild": "electron-rebuild --runtime=electron --target=25.0.1 -f -w better-sqlite3"
+    "rebuild": "electron-rebuild --runtime=electron --target=26.2.2 -f -w better-sqlite3"
   },
   "devDependencies": {
-    "@electron/rebuild": "^3.2.13",
+    "@electron/rebuild": "^3.3.0",
     "@intlify/unplugin-vue-i18n": "^0.13.0",
     "@quasar/vite-plugin": "^1.4.1",
     "@vitejs/plugin-vue": "^4.1.0",
-    "electron": "25.8.0",
+    "electron": "26.2.2",
     "electron-builder": "^24.4.0",
     "typescript": "^5.0.2",
     "unplugin-vue-components": "^0.25.1",
