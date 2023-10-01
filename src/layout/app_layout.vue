@@ -5,7 +5,7 @@
         <q-img src="/src/assets/images/vite.svg" class="viewer_logo"></q-img>
         <q-btn :color="activeRoute === item.name ? 'primary' : ''" v-for="item in appMenuItem" :key="item.name"
           :icon="item.meta.icon" flat round @click="goto(item.name as string, {})">
-          <q-tooltip anchor="center right" class="bg-indigo text-body2" self="center left" :offset="[10, 10]"
+          <q-tooltip anchor="center right" class="bg-dark text-body2" self="center left" :offset="[10, 10]"
             :delay="1000">
             {{ t(item.meta.title!) }}
           </q-tooltip>
@@ -14,8 +14,8 @@
       <div class="viewer_side-content-item">
         <q-btn flat round :icon="darkMode ? 'o_wb_sunny' : 'o_dark_mode'" @click="toggleDarkMode()"></q-btn>
         <q-btn v-for="item in settingsMenuItem" :key="item.name" :icon="item.meta.icon" flat round
-          @click="goto(item.name as string, {})">
-          <q-tooltip anchor="center right" class="bg-indigo text-body2" self="center left" :offset="[10, 10]"
+          @click="goto(item.name as string, {})" :color="activeRoute === item.name ? 'primary' : ''">
+          <q-tooltip anchor="center right" class="bg-dark text-body2" self="center left" :offset="[10, 10]"
             :delay="1000">
             {{ t(item.meta.title!) }}
           </q-tooltip>
@@ -25,12 +25,13 @@
     <div class="flex-1">
       <div class="viewer_header-content flex-1">
         <div class="header_search">
-          <q-input :debounce="1000" standout="bg-grey-10" dense color="teal" v-model="searchText" :placeholder="searchLabel">
+          <q-input :debounce="1000" :standout="darkMode ? 'bg-grey-10':'bg-grey-2'" dense color="teal" v-model="searchText" :placeholder="searchLabel" clearable>
             <template v-slot:append>
               <kbd class="doc-search__kbd q-ma-none">Ctrl+K</kbd>
             </template>
           </q-input>
         </div>
+        <div class="divider_vertical"></div>
         <div class="header_action">
           <q-btn flat round icon="o_remove" size="small" @click="minimize"></q-btn>
           <q-btn flat round :icon="maximized ? 'o_branding_watermark':'o_crop_5_4'" size="small" @click="toggleFullscreen"></q-btn>
@@ -44,7 +45,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { computed, onDeactivated, onMounted, onUnmounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { RouteParamsRaw, useRouter } from 'vue-router'
 import useLocale from '@/hook/useLocale'
 import { useQuasar } from 'quasar'

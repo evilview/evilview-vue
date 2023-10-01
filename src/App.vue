@@ -11,6 +11,8 @@ onMounted(() => {
   })
 })
 
+// todo 初始化中获取 electron-store 的值转化为 pinia 的 store
+
 </script>
 
 <template>

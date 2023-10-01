@@ -1,3 +1,5 @@
+@import './config.scss';
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -54,11 +56,15 @@ h1 {
   }
 
   .viewer_layout-main .viewer_side-content,.viewer_header-content {
-    color: #545454;
+    color: $BorderColorDark;
   }
 
   .viewer_header-content {
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid $BorderColorLight;
+  }
+
+  .divider_vertical {
+    background-color: $BorderColorLight !important;
   }
 
   .doc-search__kbd {
@@ -69,4 +75,24 @@ h1 {
 
 .flex-1 {
   flex: 1;
+}
+
+.mb-2 {
+  margin-bottom: 6px;
+}
+.mb-3 {
+  margin-bottom: 12px;
+}
+.ml-0 {
+  margin-left: 0 !important;
+}
+.ml-lose-1 {
+  margin-left: -0.6em;
+}
+
+.divider_vertical {
+  width: 1px;
+  height: 1.4em;
+  margin-right: 1em;
+  background-color: $BorderColorDark;
 }

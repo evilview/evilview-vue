@@ -43,6 +43,14 @@
                 }
             }
 
+            .q-field--standout.q-field--highlighted {
+
+                .q-field__prepend,.q-field__native {
+                    color: rgba(0, 0, 0, 0.87) !important;
+                }
+            }
+
+
             .doc-search__kbd {
                 box-shadow: none!important;
                 font-size: .8rem;
@@ -57,6 +65,8 @@
     }
 
     .viewer_layout-content {
-        padding: 3em;
+        padding: 2em;
+        height: calc(100vh - 70px);
+        overflow: auto;
     }
 }
