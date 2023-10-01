@@ -8,6 +8,8 @@ export default {
     "Field.Show": '显示',
     "Field.Exit": '退出',
     "Button.Edit": '修改',
+    "Button.Submit": '提交',
+    "Button.Reset": '重置',
     "Setting.UserName.Tootip": '你的计算机名称为 {0}，你可以修改它',
     "Setting.UserName.Tootip.Info": '存储数据和您的计算机名称相关联',
     "Setting.General": '常规设置',
@@ -39,5 +41,11 @@ export default {
     "About.Version": '当前版本：{0}',
     "About.BuildNumber": '构建号：{0}',
     "CheckForUpdates": '检查更新',
-    "Feedback": '意见反馈'
+    "Feedback": '意见反馈',
+    "Form.Please.Input": '请输入 {0}',
+    "Feedback.Description": '问题描述',
+    "Feedback.Description.Title": '将您的描述控制在200字内，如有更多内容请分多次提交',
+    "Feedback.UserName": '您的称呼',
+    "Feedback.Contact": '联系方式',
+    "Feedback.Contact.Title": '手机号/QQ/邮箱等'
 }

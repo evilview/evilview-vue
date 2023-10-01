@@ -8,6 +8,8 @@ export default {
     "Field.Show": 'Show',
     "Field.Exit": 'Exit',
     "Button.Edit": 'Edit',
+    "Button.Submit": 'Submit',
+    "Button.Reset": 'Reset',
     "Setting.UserName.Tootip": 'Your computer name is {0}, you can change it',
     "Setting.UserName.Tootip.Info": 'The stored data is associated with the name of your computer.',
     "Setting.General": 'General settings',
@@ -38,5 +40,11 @@ export default {
     "About.Version": 'Current version: {0}',
     "About.BuildNumber": 'Build number: {0}',
     "CheckForUpdates": 'Check For Updates',
-    "Feedback": 'Feedback'
+    "Feedback": 'Feedback',
+    "Form.Please.Input": 'Please enter {0}',
+    "Feedback.Description": 'Problem description',
+    "Feedback.Description.Title": 'Keep your description to 200 words. If you have more, please submit it multiple times',
+    "Feedback.UserName": 'Your salutation',
+    "Feedback.Contact": 'Contact information',
+    "Feedback.Contact.Title": 'Mobile phone number /QQ/ email, etc'
 }

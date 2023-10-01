@@ -38,3 +38,9 @@ export interface DataBaseInfo {
     transaction?: boolean,
     options?: any
 }
+
+export type FeedbackForm = {
+    Description: string,
+    UserName: string,
+    Contact: string
+} 
