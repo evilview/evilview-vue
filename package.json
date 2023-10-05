@@ -31,7 +31,7 @@
     "@intlify/unplugin-vue-i18n": "^0.13.0",
     "@quasar/vite-plugin": "^1.4.1",
     "@vitejs/plugin-vue": "^4.1.0",
-    "electron": "25.8.0",
+    "electron": "25.8.4",
     "electron-builder": "^24.4.0",
     "typescript": "^5.0.2",
     "unplugin-vue-components": "^0.25.1",
